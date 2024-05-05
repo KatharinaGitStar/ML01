@@ -1,24 +1,24 @@
+package MusicLandscape.entities;
+
 public class Track {
     private String title;
     private int duration;
-    private Artist writer;
-    private Artist performer;
+    private Artist writer = new MusicLandscape.entities.Artist();
+    private Artist performer = new MusicLandscape.entities.Artist();
     private int year;
 
-    public Track(String title, int duration, Artist writer, Artist performer, int year) {
-        this.title = title;
-        this.duration = duration;
-        this.writer = writer;
-        this.performer = performer;
-        this.year = year;
-    }
 
     public int getYear() {
         return year;
     }
 
     public void setYear(int year){
-        this.year = year;
+        if(year >= 0) {
+            this.year = year;
+        }
+        else {
+            this.year = 0;
+        }
     }
 
     public int getDuration() {
@@ -26,11 +26,21 @@ public class Track {
     }
 
     public void setDuration(int duration) {
-        this.duration = duration;
+        if(duration >= 0){
+            this.duration = duration;
+        }
+        else {
+            this.duration = 0;
+        }
+
     }
 
     public String getTitle() {
-        return title;
+        if (title == null || title.trim().isEmpty()) {
+            return this.title = "unknown title";
+        } else {
+            return this.title = title;
+        }
     }
 
     public void setTitle(String title) {
@@ -42,7 +52,9 @@ public class Track {
     }
 
     public void setWriter(Artist writer) {
-        this.writer = writer;
+        if (writer != null) {
+            this.writer = writer;
+        }
     }
 
     public Artist getPerformer() {
@@ -50,16 +62,49 @@ public class Track {
     }
 
     public void setPerformer(Artist performer) {
-        this.performer = performer;
+        if (performer != null) {
+            this.performer = performer;
+        }
     }
 
     public boolean writerIsKnown() {
-        return writer != null;
+        //writer != null checks if the writer object is not null.
+        //writer.getName() != null checks if the getName() method returns a non-null value
+        return writer != null && writer.getName() != null;
     }
 
     public String getString() {
-        //example implementation, not final version
-        return "Title: " + title + ", Duration: " + duration;
+        String trackInfo = "";
+
+        // Append title or "unknown" if title is null
+        if (title != null && !title.isEmpty()) {
+            trackInfo += title + " by ";
+        } else {
+            trackInfo += "unknown by ";
+        }
+
+        // Append performer name or "unknown" if performer is null
+        if (performer != null && performer.getName() != null && !performer.getName().isEmpty()) {
+            trackInfo += performer.getName() + " performed by ";
+        } else {
+            trackInfo += "unknown performed by ";
+        }
+
+        // Append writer name or "unknown" if writer is null
+        if (writer != null && writer.getName() != null && !writer.getName().isEmpty()) {
+            trackInfo += writer.getName();
+        } else {
+            trackInfo += "unknown";
+        }
+
+        // Format duration as minutes and seconds
+        int minutes = duration / 60;
+        int seconds = duration % 60;
+        String durationString = String.format("(%02d:%02d)", minutes, seconds);
+
+        // Append duration
+        trackInfo += " " + durationString;
+
+        return trackInfo;
     }
 }
-
