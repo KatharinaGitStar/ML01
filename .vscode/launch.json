@@ -4,7 +4,6 @@
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
-        
         {
             "type": "java",
             "name": "Current File",
@@ -13,9 +12,16 @@
         },
         {
             "type": "java",
-            "name": "HelloWorld",
+            "name": "Artist",
             "request": "launch",
-            "mainClass": "HelloWorld",
+            "mainClass": "Artist",
+            "projectName": "MusicLandscape_72124085"
+        },
+        {
+            "type": "java",
+            "name": "Track",
+            "request": "launch",
+            "mainClass": "Track",
             "projectName": "MusicLandscape_72124085"
         }
     ]
