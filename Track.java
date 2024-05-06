@@ -71,6 +71,37 @@ public class Track {
     }
 
     public String getString() {
+        String trackInfo = "";
 
+        // Append title or "unknown" if title is null
+        if (title != null && !title.isEmpty()) {
+            trackInfo += title + " by ";
+        } else {
+            trackInfo += "unknown by ";
+        }
+
+        // Append writer name or "unknown" if writer is null
+        if (writer != null && writer.getName() != null && !writer.getName().isEmpty()) {
+            trackInfo += writer.getName() + " performed by ";
+        } else {
+            trackInfo += "unknown performed by ";
+        }
+
+        // Append performer name or "unknown" if performer is null
+        if (performer != null && performer.getName() != null && !performer.getName().isEmpty()) {
+            trackInfo += performer.getName();
+        } else {
+            trackInfo += "unknown";
+        }
+
+        // Format duration as minutes and seconds
+        int minutes = duration / 60;
+        int seconds = duration % 60;
+        String durationString = String.format(" (%02d:%02d)", minutes, seconds);
+
+        // Append duration
+        trackInfo += durationString;
+
+        return trackInfo.trim(); // Trim leading/trailing whitespace
     }
 }
