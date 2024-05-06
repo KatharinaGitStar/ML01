@@ -13,11 +13,8 @@ public class Track {
     }
 
     public void setYear(int year){
-        if(year >= 0) {
+        if (((year >= 1900) || (year < 3000)) && (year > 0)) {
             this.year = year;
-        }
-        else {
-            this.year = 0;
         }
     }
 
@@ -74,37 +71,6 @@ public class Track {
     }
 
     public String getString() {
-        String trackInfo = "";
 
-        // Append title or "unknown" if title is null
-        if (title != null && !title.isEmpty()) {
-            trackInfo += title + " by ";
-        } else {
-            trackInfo += "unknown by ";
-        }
-
-        // Append performer name or "unknown" if performer is null
-        if (performer != null && performer.getName() != null && !performer.getName().isEmpty()) {
-            trackInfo += performer.getName() + " performed by ";
-        } else {
-            trackInfo += "unknown performed by ";
-        }
-
-        // Append writer name or "unknown" if writer is null
-        if (writer != null && writer.getName() != null && !writer.getName().isEmpty()) {
-            trackInfo += writer.getName();
-        } else {
-            trackInfo += "unknown";
-        }
-
-        // Format duration as minutes and seconds
-        int minutes = duration / 60;
-        int seconds = duration % 60;
-        String durationString = String.format("(%02d:%02d)", minutes, seconds);
-
-        // Append duration
-        trackInfo += " " + durationString;
-
-        return trackInfo;
     }
 }
