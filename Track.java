@@ -12,10 +12,14 @@ public class Track {
         return year;
     }
 
-    public void setYear(int year){
-        if (((year >= 1900) || (year < 3000)) && (year > 0)) {
+    public boolean setYear(int year){
+        if(year > 1899 && year < 3000) {
             this.year = year;
         }
+        else {
+            return true;
+        }
+        return false;
     }
 
     public int getDuration() {
