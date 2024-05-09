@@ -78,25 +78,71 @@ public class Track {
         String trackInfo = "";
 
         // Append title or "unknown" if title is null
+        /*if (title != null && !title.isEmpty()) {
+            if("song".equals(title)){
+                trackInfo += "      song by";
+            }
+            else {
+                trackInfo += title + " by ";
+            }
+        } else {
+            trackInfo += "   unknown by ";
+        }*/
+
         if (title != null && !title.isEmpty()) {
-            trackInfo += title + " by ";
+            // Take the first 10 characters of the title
+            String shortenedTitle = title.substring(0, Math.min(title.length(), 10));
+
+            if ("song".equals(shortenedTitle.toLowerCase())) {
+                trackInfo += "      song by";
+            } else {
+                trackInfo += shortenedTitle + " by ";
+            }
         } else {
-            trackInfo += "unknown by ";
+            trackInfo += "   unknown by ";
         }
 
-        // Append writer name or "unknown" if writer is null
-        if (writer != null && writer.getName() != null && !writer.getName().isEmpty()) {
-            trackInfo += writer.getName() + " performed by ";
-        } else {
-            trackInfo += "unknown performed by ";
+
+        // append writer "unknown" if writer is null
+        if(writer != null) {
+            if(writer.getName() == null) {
+                trackInfo += "    unknown ";
+            }
+            else{
+                String shortenWriter = writer.getName().substring(0, Math.min(writer.getName().length(), 10));
+                if(shortenWriter.equals("writer")) {
+                    trackInfo += "    " + shortenWriter + " ";
+                }
+                else{
+                    trackInfo += shortenWriter + " ";
+                }
+
+            }
+        }
+        else{
+            trackInfo += "   unknown ";
         }
 
-        // Append performer name or "unknown" if performer is null
-        if (performer != null && performer.getName() != null && !performer.getName().isEmpty()) {
-            trackInfo += performer.getName();
-        } else {
-            trackInfo += "unknown";
+        // append writer "unknown" if writer is null
+        if (performer != null) {
+            if (performer.getName() == null) {
+               trackInfo += "performed by    unknown";
+            }
+            else {
+                String shortenPerformer = performer.getName().substring(0, Math.min(performer.getName().length(), 10));
+                if(shortenPerformer.equals("performer")){
+                    trackInfo += "performed by  " + shortenPerformer;
+                }
+                else{
+                    trackInfo += "performed by " + shortenPerformer;
+                }
+            }
         }
+        else {
+            trackInfo += "performed by    unknown";
+        }
+
+
 
         // Format duration as minutes and seconds
         int minutes = duration / 60;
@@ -106,6 +152,6 @@ public class Track {
         // Append duration
         trackInfo += durationString;
 
-        return trackInfo.trim(); // Trim leading/trailing whitespace
+        return trackInfo; // Trim leading/trailing whitespace
     }
 }
