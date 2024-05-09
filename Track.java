@@ -78,19 +78,8 @@ public class Track {
         String trackInfo = "";
 
         // Append title or "unknown" if title is null
-        /*if (title != null && !title.isEmpty()) {
-            if("song".equals(title)){
-                trackInfo += "      song by";
-            }
-            else {
-                trackInfo += title + " by ";
-            }
-        } else {
-            trackInfo += "   unknown by ";
-        }*/
-
         if (title != null && !title.isEmpty()) {
-            // Take the first 10 characters of the title
+            // take the first 10 characters of the title
             String shortenedTitle = title.substring(0, Math.min(title.length(), 10));
 
             if ("song".equals(shortenedTitle.toLowerCase())) {
@@ -109,6 +98,7 @@ public class Track {
                 trackInfo += "    unknown ";
             }
             else{
+                // take the first 10 characters of writer
                 String shortenWriter = writer.getName().substring(0, Math.min(writer.getName().length(), 10));
                 if(shortenWriter.equals("writer")) {
                     trackInfo += "    " + shortenWriter + " ";
@@ -129,6 +119,7 @@ public class Track {
                trackInfo += "performed by    unknown";
             }
             else {
+                // take the first 10 characters of performer
                 String shortenPerformer = performer.getName().substring(0, Math.min(performer.getName().length(), 10));
                 if(shortenPerformer.equals("performer")){
                     trackInfo += "performed by  " + shortenPerformer;
