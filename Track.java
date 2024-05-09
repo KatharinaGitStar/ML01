@@ -40,7 +40,7 @@ public class Track {
         if (title == null || title.trim().isEmpty()) {
             return this.title = "unknown title";
         } else {
-            return this.title = title;
+            return this.title;
         }
     }
 
